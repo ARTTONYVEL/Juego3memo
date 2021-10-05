@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Bullet : MonoBehaviour
 {
       Rigidbody rb;
-    public float force = 1/16;
+    public float force = 1/200;
+    //added a comment
     public Vector3 Transform = new Vector3(0,0,0);
 
     // Start is called before the first frame update
