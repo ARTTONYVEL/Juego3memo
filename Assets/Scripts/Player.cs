@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] float speed = 8;
     public Transform referencia;
     public GameObject balas;
+    public float timeBetweenAttacks;
+    bool alreadyAttacked;
 
 
     void Awake(){
@@ -51,13 +53,27 @@ public class Player : MonoBehaviour
     }  
 
     IEnumerator OneShot(){
-        yield return new WaitForSeconds(5/10);
+        yield return new WaitForSeconds(0);
 
         Instantiate(balas, referencia.position, referencia.rotation);
      }
 
   void Shoot(){
+        if (!alreadyAttacked)
+        {
+            
+            Instantiate(balas, referencia.position, referencia.rotation);
+           
 
-  }
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
 
 }
